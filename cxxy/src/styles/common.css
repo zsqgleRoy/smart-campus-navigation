@@ -1,0 +1,98 @@
+/* 全局样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--van-background);
+}
+
+/* 主题变量 */
+:root[data-theme='light'] {
+  --van-background: #f7f8fa;
+  --van-background-2: #ffffff;
+  --van-text-color: #323233;
+  --van-text-color-2: #646566;
+  --van-text-color-3: #969799;
+}
+
+:root[data-theme='dark'] {
+  --van-background: #1a1a1a;
+  --van-background-2: #2a2a2a;
+  --van-text-color: #e5e5e5;
+  --van-text-color-2: #b3b3b3;
+  --van-text-color-3: #8c8c8c;
+}
+
+:root[data-theme='eye'] {
+  --van-background: #f5f0e8;
+  --van-background-2: #fff8f0;
+  --van-text-color: #5c4a3a;
+  --van-text-color-2: #8b7355;
+  --van-text-color-3: #a68b6b;
+}
+
+/* 移动端优化 */
+body {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--van-text-color);
+}
+
+/* 防止移动端300ms延迟 */
+a,
+button,
+input,
+textarea {
+  touch-action: manipulation;
+}
+
+/* 滚动优化 */
+.scroll-container {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+/* 页面容器 */
+.page-container {
+  padding-bottom: 50px; /* 为底部导航栏留出空间 */
+  min-height: 100vh;
+}
+
+/* 安全区域适配（iPhone X等） */
+@supports (padding: max(0px)) {
+  .page-container {
+    padding-bottom: max(50px, env(safe-area-inset-bottom));
+  }
+}
+
+/* 加载动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+

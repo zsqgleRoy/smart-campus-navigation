@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图标转换工具</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #1989fa;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #07c160;
+    }
+  </style>
+</head>
+<body>
+  <h1>应用图标生成器</h1>
+  <p>点击按钮生成并下载 JPG 格式的应用图标</p>
+  
+  <canvas id="iconCanvas" width="512" height="512"></canvas>
+  
+  <div>
+    <button onclick="generateIcon()">生成图标</button>
+    <button onclick="downloadJPG()">下载为 JPG</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('iconCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function generateIcon() {
+      // 清空画布
+      ctx.clearRect(0, 0, 512, 512);
+
+      // 创建渐变背景
+      const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+      gradient.addColorStop(0, '#1989fa');
+      gradient.addColorStop(1, '#07c160');
+      
+      // 绘制圆角矩形背景
+      drawRoundedRect(ctx, 0, 0, 512, 512, 100);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // 绘制建筑主体
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      drawRoundedRect(ctx, 196, 176, 240, 160, 10);
+      ctx.fill();
+
+      // 绘制建筑顶部
+      ctx.beginPath();
+      ctx.moveTo(196, 176);
+      ctx.lineTo(316, 136);
+      ctx.lineTo(436, 176);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.fill();
+
+      // 绘制窗户
+      ctx.fillStyle = '#1989fa';
+      drawRoundedRect(ctx, 216, 216, 40, 50, 5);
+      ctx.fill();
+      drawRoundedRect(ctx, 276, 216, 40, 50, 5);
+      ctx.fill();
+      drawRoundedRect(ctx, 336, 216, 40, 50, 5);
+      ctx.fill();
+      drawRoundedRect(ctx, 396, 216, 40, 50, 5);
+      ctx.fill();
+
+      // 绘制门
+      drawRoundedRect(ctx, 286, 276, 60, 80, 5);
+      ctx.fill();
+
+      // 绘制文字
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 48px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('校园导航', 256, 376);
+    }
+
+    function drawRoundedRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+
+    function downloadJPG() {
+      const link = document.createElement('a');
+      link.download = 'appIcon.jpg';
+      link.href = canvas.toDataURL('image/jpeg', 0.9);
+      link.click();
+    }
+
+    // 页面加载时自动生成
+    window.onload = generateIcon;
+  </script>
+</body>
+</html>
+

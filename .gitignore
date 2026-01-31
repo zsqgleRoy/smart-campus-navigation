@@ -1,0 +1,226 @@
+# ============================================
+# 根目录 .gitignore
+# 适用于整个项目（包含 cxxy 和 szcx 子项目）
+# ============================================
+
+# ============================================
+# Android 项目相关 (szcx/)
+# ============================================
+
+# Android Studio / IntelliJ IDEA
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+/.idea/gradle.xml
+/.idea/misc.xml
+/.idea/runConfigurations.xml
+/.idea/vcs.xml
+*.ipr
+*.iws
+.idea/
+
+# Android 构建文件
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Android 签名文件（不要提交密钥）
+*.jks
+*.keystore
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Android 临时文件
+*.log
+*.hprof
+*.orig
+*.rej
+*.swp
+*.swo
+*~
+
+# Android 发布文件
+/release
+/app/release
+*.apk
+*.aab
+
+# ============================================
+# Vue/Node.js 项目相关 (cxxy/)
+# ============================================
+
+# 依赖目录
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# 构建输出
+dist/
+dist-ssr/
+build/
+*.local
+
+# 测试覆盖率
+coverage/
+.nyc_output/
+
+# 日志文件
+logs/
+*.log
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# 编辑器配置
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# TypeScript
+*.tsbuildinfo
+
+# ESLint 缓存
+.eslintcache
+
+# 测试相关
+/cypress/videos/
+/cypress/screenshots/
+__screenshots__/
+
+# Vite
+*.timestamp-*-*.mjs
+.vite/
+
+# ============================================
+# 操作系统相关
+# ============================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================
+# 其他通用忽略
+# ============================================
+
+# 临时文件
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+
+# 压缩文件（通常不需要提交）
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+
+# 配置文件（包含敏感信息）
+config.json
+secrets.json
+*.key
+*.pem
+*.cert
+
+# 文档生成
+docs/_build/
+site/
+
+# Python（如果有）
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Java（如果有）
+*.class
+*.jar
+*.war
+*.ear
+target/
+.mvn/
+
+# 其他
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>构建测试</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .test-item {
+      margin: 10px 0;
+      padding: 10px;
+      background: #f5f5f5;
+      border-radius: 5px;
+    }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>构建测试页面</h1>
+  <div id="test-results"></div>
+  
+  <script>
+    const results = document.getElementById('test-results');
+    
+    function addTest(name, status, message) {
+      const div = document.createElement('div');
+      div.className = 'test-item';
+      div.innerHTML = `<strong>${name}:</strong> <span class="${status}">${status}</span> - ${message}`;
+      results.appendChild(div);
+    }
+    
+    // 测试 1: 检查 DOM
+    addTest('DOM 加载', 'success', '页面 DOM 已加载');
+    
+    // 测试 2: 检查 JavaScript
+    if (typeof console !== 'undefined') {
+      addTest('JavaScript 支持', 'success', '浏览器支持 JavaScript');
+    } else {
+      addTest('JavaScript 支持', 'error', '浏览器不支持 JavaScript');
+    }
+    
+    // 测试 3: 检查资源路径
+    const testImg = new Image();
+    testImg.onload = () => addTest('资源加载', 'success', '可以加载资源文件');
+    testImg.onerror = () => addTest('资源加载', 'error', '无法加载资源文件');
+    testImg.src = './assets/index-46LxcODv.css';
+    
+    // 测试 4: 检查控制台
+    console.log('测试: 控制台输出正常');
+    addTest('控制台', 'success', '请查看浏览器控制台');
+    
+    // 测试 5: 检查 Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        if (registrations.length > 0) {
+          addTest('Service Worker', 'warning', `检测到 ${registrations.length} 个 Service Worker，可能影响页面加载`);
+        } else {
+          addTest('Service Worker', 'success', '未检测到 Service Worker');
+        }
+      });
+    } else {
+      addTest('Service Worker', 'info', '浏览器不支持 Service Worker');
+    }
+  </script>
+</body>
+</html>
+
